@@ -18,7 +18,6 @@ import org.ict4h.atomfeed.client.service.EventWorker;
 
 import java.io.IOException;
 import java.net.URI;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,8 +78,7 @@ public class OpenERPCustomerServiceEventWorker implements EventWorker {
             parameters.add(createParameter("gender", person.getGender(), "string"));
         }
         if (person.getBirthdate() != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            parameters.add(createParameter("birthdate", sdf.format(person.getBirthdate()), "string"));
+            parameters.add(createParameter("birthdate", formatBirthdate(person.getBirthdate()), "string"));
         }
         if(person.getAttributes() != null){
             parameters.add(createParameter("attributes", person.getAttributes().toJsonString(), "string"));
@@ -120,6 +118,10 @@ public class OpenERPCustomerServiceEventWorker implements EventWorker {
         return (preferredAddress != null) ?  preferredAddress.getCityVillage() : null;
     }
 
+
+    private String formatBirthdate(String birthdate) {
+        return birthdate.length() >= 10 ? birthdate.substring(0, 10) : birthdate;
+    }
 
     private Parameter createParameter(String name, String value, String type) {
         return new Parameter(name, value, type);
