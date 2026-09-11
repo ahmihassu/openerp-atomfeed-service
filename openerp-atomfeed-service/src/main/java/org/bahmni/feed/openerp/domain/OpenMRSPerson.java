@@ -4,19 +4,18 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Arrays;
-import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OpenMRSPerson {
     private OpenMRSName preferredName;
     private String uuid;
     private String gender;
-    private Date birthdate;
+    private String birthdate;
     private boolean birthdateEstimated;
     private OpenMRSPersonAddress preferredAddress;
     private OpenMRSPersonAttributes attributes;
 
-    public OpenMRSPerson(OpenMRSName preferredName, String uuid, String gender, Date birthdate, boolean birthdateEstimated, OpenMRSPersonAddress preferredAddress, OpenMRSPersonAttributes attributes) {
+    public OpenMRSPerson(OpenMRSName preferredName, String uuid, String gender, String birthdate, boolean birthdateEstimated, OpenMRSPersonAddress preferredAddress, OpenMRSPersonAttributes attributes) {
         this.preferredName = preferredName;
         this.uuid = uuid;
         this.gender = gender;
@@ -61,11 +60,11 @@ public class OpenMRSPerson {
         this.uuid = uuid;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
